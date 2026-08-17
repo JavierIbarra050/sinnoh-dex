@@ -245,7 +245,9 @@ export default function App() {
   };
 
   const renderLobby = () => {
-    const totalCaught = Object.values(caughtMap).filter(Boolean).length;
+    const regionalList = [...BASE_DEX, ...POSTGAME_COMMON, ...(version === 'diamond' ? POSTGAME_DIAMOND : POSTGAME_PEARL)];
+    const regionalTotal = regionalList.length;
+    const regionalCaught = regionalList.filter(name => caughtMap[name]).length;
     
     return (
       <div className="mobile-lobby tcg-os">
@@ -257,9 +259,9 @@ export default function App() {
           <div className="trainer-stats">
             <div className="stat-label">Progreso Sinnoh</div>
             <div className="stat-bar-bg">
-              <div className="stat-bar-fill" style={{ width: `${(totalCaught / 493) * 100}%` }}></div>
+              <div className="stat-bar-fill" style={{ width: `${(regionalCaught / regionalTotal) * 100}%` }}></div>
             </div>
-            <div className="stat-text">{totalCaught} / 493</div>
+            <div className="stat-text">{regionalCaught} / {regionalTotal}</div>
           </div>
         </div>
 
@@ -277,7 +279,7 @@ export default function App() {
             <span>Tabla Tipos</span>
           </div>
           <div className="tcg-card shiny-card" onClick={() => setCurrentScreen('shiny')}>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-charm.png" alt="Shiny" />
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-radar.png" alt="Shiny" />
             <span>Shiny Hunt</span>
           </div>
         </div>
