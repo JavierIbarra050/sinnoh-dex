@@ -278,8 +278,8 @@ export default function App() {
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/vs-seeker.png" alt="Tipos" />
             <span>Tabla Tipos</span>
           </div>
-          <div className="tcg-card shiny-card" onClick={() => setCurrentScreen('shiny')}>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-charm.png" alt="Shiny" style={{ transform: 'scale(1.6)' }} />
+          <div className="tcg-card shiny-lobby-card" onClick={() => setCurrentScreen('shiny')}>
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-charm.png" alt="Shiny" style={{ transform: 'scale(2.2) translateY(8px)', imageRendering: 'pixelated' }} />
             <span>Shiny Hunt</span>
           </div>
         </div>

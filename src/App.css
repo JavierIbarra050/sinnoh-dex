@@ -376,7 +376,7 @@ body {
 .regional-card { background: linear-gradient(135deg, #ef4444, #991b1b); }
 .national-card { background: linear-gradient(135deg, #a855f7, #6b21a8); }
 .types-card { background: linear-gradient(135deg, #3b82f6, #1e40af); }
-.shiny-card { background: linear-gradient(135deg, #fbbf24, #d97706); }
+.shiny-lobby-card { background: linear-gradient(135deg, #fbbf24, #d97706); }
 
 /* Shared App Screen */
 .mobile-app-screen {
