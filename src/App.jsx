@@ -245,26 +245,40 @@ export default function App() {
   };
 
   const renderLobby = () => (
-    <div className="mobile-lobby">
-      <div className="lobby-header">
-        <h1>Pokémon OS</h1>
-        <p>Terminal Móvil de Entrenador</p>
+    <div className="mobile-lobby rotom-os">
+      <div className="rotom-notch">
+        <div className="rotom-eye"></div>
+        <div className="rotom-eye"></div>
       </div>
+      
+      <div className="lobby-header">
+        <h1>Rotom OS</h1>
+        <p>¿A dónde vamos hoy, bzzt?</p>
+      </div>
+
       <div className="lobby-grid">
-        <div className="app-icon" onClick={() => setCurrentScreen('pokedex-regional')}>
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Pokédex Regional" />
+        <div className="app-bubble" onClick={() => setCurrentScreen('pokedex-regional')}>
+          <div className="bubble-icon" style={{backgroundColor: '#ff5c5c'}}>
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Pokédex Regional" />
+          </div>
           <span>Regional</span>
         </div>
-        <div className="app-icon" onClick={() => setCurrentScreen('pokedex-national')}>
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png" alt="Pokédex Nacional" />
+        <div className="app-bubble" onClick={() => setCurrentScreen('pokedex-national')}>
+          <div className="bubble-icon" style={{backgroundColor: '#a35cff'}}>
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png" alt="Pokédex Nacional" />
+          </div>
           <span>Nacional</span>
         </div>
-        <div className="app-icon" onClick={() => setCurrentScreen('types')}>
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/vs-seeker.png" alt="Tipos" />
+        <div className="app-bubble" onClick={() => setCurrentScreen('types')}>
+          <div className="bubble-icon" style={{backgroundColor: '#5ce0ff'}}>
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/vs-seeker.png" alt="Tipos" />
+          </div>
           <span>Tipos</span>
         </div>
-        <div className="app-icon" onClick={() => setCurrentScreen('shiny')}>
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-charm.png" alt="Shiny" />
+        <div className="app-bubble" onClick={() => setCurrentScreen('shiny')}>
+          <div className="bubble-icon" style={{backgroundColor: '#ffcf5c'}}>
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-charm.png" alt="Shiny" />
+          </div>
           <span>Rastreador</span>
         </div>
       </div>
