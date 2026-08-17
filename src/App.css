@@ -364,6 +364,8 @@ body {
   height: 60px;
   object-fit: contain;
   filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+  image-rendering: pixelated;
+  transform: scale(1.4);
 }
 
 .tcg-card span {
