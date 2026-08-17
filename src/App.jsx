@@ -595,55 +595,60 @@ export default function App() {
     return `${String(caught).padStart(3, '0')} / ${String(total).padStart(3, '0')}`;
   };
 
-  return (
-    <div className="pokedex-viewport">
-      <div className="pokedex-shell">
-        <div className="lights-container">
-          <div className="big-blue-light"></div>
-          <div className="small-lights">
-            <div className="small-light red"></div>
-            <div className="small-light yellow"></div>
-            <div className="small-light green"></div>
-          </div>
-        </div>
+  const isPokedex = currentScreen === 'pokedex-regional' || currentScreen === 'pokedex-national';
 
-        <div className="screen-bezel">
-          <div className="screen-display">
-            {currentScreen === 'lobby' && renderLobby()}
-            {currentScreen === 'types' && renderTypes()}
-            {currentScreen === 'shiny' && renderShiny()}
-            {(currentScreen === 'pokedex-regional' || currentScreen === 'pokedex-national') && renderPokedex()}
+  if (isPokedex) {
+    return (
+      <div className="pokedex-viewport">
+        <div className="pokedex-shell">
+          <div className="lights-container">
+            <div className="big-blue-light"></div>
+            <div className="small-lights">
+              <div className="small-light red"></div>
+              <div className="small-light yellow"></div>
+              <div className="small-light green"></div>
+            </div>
           </div>
-        </div>
 
-        <div className="controls">
-          <div className="d-pad">
-            <div className="d-pad-part d-pad-up" onClick={() => setCurrentScreen('lobby')}></div>
-            <div className="d-pad-part d-pad-left" onClick={() => setCurrentScreen('lobby')}></div>
-            <div className="d-pad-part d-pad-center" onClick={() => setCurrentScreen('lobby')}></div>
-            <div className="d-pad-part d-pad-right" onClick={() => setCurrentScreen('lobby')}></div>
-            <div className="d-pad-part d-pad-down" onClick={() => setCurrentScreen('lobby')}></div>
+          <div className="screen-bezel">
+            <div className="screen-display">
+              {renderPokedex()}
+            </div>
           </div>
-          
-          {(currentScreen === 'pokedex-regional' || currentScreen === 'pokedex-national') ? (
+
+          <div className="controls">
+            <div className="d-pad">
+              <div className="d-pad-part d-pad-up" onClick={() => setCurrentScreen('lobby')}></div>
+              <div className="d-pad-part d-pad-left" onClick={() => setCurrentScreen('lobby')}></div>
+              <div className="d-pad-part d-pad-center" onClick={() => setCurrentScreen('lobby')}></div>
+              <div className="d-pad-part d-pad-right" onClick={() => setCurrentScreen('lobby')}></div>
+              <div className="d-pad-part d-pad-down" onClick={() => setCurrentScreen('lobby')}></div>
+            </div>
+            
             <div className="status-display">
               {getGlobalProgress()}
             </div>
-          ) : (
-            <div className="status-display" style={{visibility: 'hidden'}}>
-              000 / 000
-            </div>
-          )}
 
-          <div className="buttons">
-            <button className={`action-button button-b ${version === 'pearl' ? 'active' : ''}`} onClick={() => setVersion('pearl')} title="Shining Pearl">
-              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/484.png" alt="Palkia" style={{width: '60px', height: '60px', transform: 'scale(1.8) translateY(-5px)'}} />
-            </button>
-            <button className={`action-button button-a ${version === 'diamond' ? 'active' : ''}`} onClick={() => setVersion('diamond')} title="Brilliant Diamond">
-              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/483.png" alt="Dialga" style={{width: '60px', height: '60px', transform: 'scale(1.8) translateY(-5px)'}} />
-            </button>
+            <div className="buttons">
+              <button className={`action-button button-b ${version === 'pearl' ? 'active' : ''}`} onClick={() => setVersion('pearl')} title="Shining Pearl">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/484.png" alt="Palkia" style={{width: '60px', height: '60px', transform: 'scale(1.8) translateY(-5px)'}} />
+              </button>
+              <button className={`action-button button-a ${version === 'diamond' ? 'active' : ''}`} onClick={() => setVersion('diamond')} title="Brilliant Diamond">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/483.png" alt="Dialga" style={{width: '60px', height: '60px', transform: 'scale(1.8) translateY(-5px)'}} />
+              </button>
+            </div>
           </div>
         </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="hub-viewport">
+      <div className="hub-screen">
+        {currentScreen === 'lobby' && renderLobby()}
+        {currentScreen === 'types' && renderTypes()}
+        {currentScreen === 'shiny' && renderShiny()}
       </div>
     </div>
   );
