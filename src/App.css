@@ -167,6 +167,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 .action-button:active {
   transform: scale(0.95);
