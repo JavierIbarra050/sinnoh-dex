@@ -279,7 +279,7 @@ export default function App() {
             <span>Tabla Tipos</span>
           </div>
           <div className="tcg-card shiny-lobby-card" onClick={() => setCurrentScreen('shiny')}>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-charm.png" alt="Shiny" style={{ transform: 'scale(2.2) translateY(8px)', imageRendering: 'pixelated' }} />
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-charm.png" alt="Shiny" style={{ transform: 'scale(1.5)', imageRendering: 'pixelated' }} />
             <span>Shiny Hunt</span>
           </div>
         </div>
