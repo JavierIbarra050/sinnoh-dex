@@ -578,12 +578,6 @@ export default function App() {
             
             <div className="bottom-status-bar">
               <div className="status-stats">Progreso: {totalCaught} / {total}</div>
-              {currentScreen === 'pokedex-regional' && (
-                <div className="version-toggles">
-                  <button className={`v-btn ${version === 'diamond' ? 'active' : ''}`} onClick={() => setVersion('diamond')}>BD</button>
-                  <button className={`v-btn ${version === 'pearl' ? 'active' : ''}`} onClick={() => setVersion('pearl')}>SP</button>
-                </div>
-              )}
             </div>
           </div>
         )}
@@ -626,8 +620,8 @@ export default function App() {
           </div>
 
           <div className="buttons">
-            <button className="action-button button-b">B</button>
-            <button className="action-button button-a">A</button>
+            <button className={`action-button button-b ${version === 'pearl' ? 'active' : ''}`} onClick={() => setVersion('pearl')} title="Shining Pearl">B</button>
+            <button className={`action-button button-a ${version === 'diamond' ? 'active' : ''}`} onClick={() => setVersion('diamond')} title="Brilliant Diamond">A</button>
           </div>
         </div>
       </div>

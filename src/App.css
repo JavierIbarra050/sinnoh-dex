@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,7 +7,7 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji";
+  font-family: 'VT323', monospace;
   background-color: #000;
   color: #fff;
   overflow: hidden;
@@ -32,7 +34,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 15px 15px 25px 15px;
+  padding: 10px 10px 15px 10px;
 }
 
 @media (min-width: 450px) {
@@ -50,7 +52,7 @@ body {
   display: flex;
   align-items: flex-start;
   gap: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .big-blue-light {
@@ -84,12 +86,12 @@ body {
 .screen-bezel {
   background-color: #dedede;
   border-radius: 15px 15px 15px 45px;
-  padding: 15px;
+  padding: 10px;
   flex: 1;
   display: flex;
   flex-direction: column;
   box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   position: relative;
 }
 
