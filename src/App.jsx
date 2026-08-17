@@ -346,6 +346,18 @@ export default function App() {
       setShinyHuntSearch('');
     };
 
+    const removeShinyHunt = (name, e) => {
+      e.stopPropagation();
+      if(window.confirm(`¿Seguro que quieres borrar el progreso de ${name}?`)) {
+        setShinyCounters(prev => {
+          const updated = { ...prev };
+          delete updated[name];
+          localStorage.setItem('sinnoh-dex-shiny-counters', JSON.stringify(updated));
+          return updated;
+        });
+      }
+    };
+
     return (
       <div className="mobile-app-screen shiny-hunt-screen">
         <div className="nav-bar">
@@ -373,8 +385,17 @@ export default function App() {
                     <span className="shiny-name">{name}</span>
                     <div className="shiny-method">{getShinyMethod(name).title}</div>
                   </div>
-                  <div className="shiny-counter-val">
-                    {shinyCounters[name]}
+                  <div style={{display: 'flex', alignItems: 'center', gap: '15px'}}>
+                    <div className="shiny-counter-val">
+                      {shinyCounters[name]}
+                    </div>
+                    <button 
+                      onClick={(e) => removeShinyHunt(name, e)}
+                      style={{background: 'rgba(239, 68, 68, 0.1)', border: '2px solid #ef4444', borderRadius: '6px', padding: '4px 10px', color: '#ef4444', cursor: 'pointer', fontWeight: 'bold', fontSize: '14px'}}
+                      title="Borrar Hunt"
+                    >
+                      ✕
+                    </button>
                   </div>
                 </div>
               ))
