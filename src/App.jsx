@@ -244,47 +244,46 @@ export default function App() {
     }
   };
 
-  const renderLobby = () => (
-    <div className="mobile-lobby rotom-os">
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/479.png" className="rotom-watermark" alt="Rotom" />
-      <div className="rotom-notch">
-        <div className="rotom-eye"></div>
-        <div className="rotom-eye"></div>
-      </div>
-      
-      <div className="lobby-header">
-        <h1>Rotom OS</h1>
-        <p>Aloha! Sistema Inicializado.</p>
-      </div>
+  const renderLobby = () => {
+    const totalCaught = Object.values(caughtMap).filter(Boolean).length;
+    
+    return (
+      <div className="mobile-lobby tcg-os">
+        <div className="trainer-id-badge">
+          <div className="trainer-info">
+            <h2>TRAINER JAVIER</h2>
+            <span className="trainer-id">ID No. 050</span>
+          </div>
+          <div className="trainer-stats">
+            <div className="stat-label">Progreso Sinnoh</div>
+            <div className="stat-bar-bg">
+              <div className="stat-bar-fill" style={{ width: `${(totalCaught / 493) * 100}%` }}></div>
+            </div>
+            <div className="stat-text">{totalCaught} / 493</div>
+          </div>
+        </div>
 
-      <div className="lobby-grid">
-        <div className="app-bubble" onClick={() => setCurrentScreen('pokedex-regional')}>
-          <div className="bubble-icon" style={{backgroundColor: '#ff5c5c'}}>
+        <div className="tcg-grid">
+          <div className="tcg-card regional-card" onClick={() => setCurrentScreen('pokedex-regional')}>
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Pokédex Regional" />
+            <span>Dex Regional</span>
           </div>
-          <span>Regional</span>
-        </div>
-        <div className="app-bubble" onClick={() => setCurrentScreen('pokedex-national')}>
-          <div className="bubble-icon" style={{backgroundColor: '#a35cff'}}>
+          <div className="tcg-card national-card" onClick={() => setCurrentScreen('pokedex-national')}>
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png" alt="Pokédex Nacional" />
+            <span>Dex Nacional</span>
           </div>
-          <span>Nacional</span>
-        </div>
-        <div className="app-bubble" onClick={() => setCurrentScreen('types')}>
-          <div className="bubble-icon" style={{backgroundColor: '#5ce0ff'}}>
+          <div className="tcg-card types-card" onClick={() => setCurrentScreen('types')}>
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/vs-seeker.png" alt="Tipos" />
+            <span>Tabla Tipos</span>
           </div>
-          <span>Tipos</span>
-        </div>
-        <div className="app-bubble" onClick={() => setCurrentScreen('shiny')}>
-          <div className="bubble-icon" style={{backgroundColor: '#ffcf5c'}}>
+          <div className="tcg-card shiny-card" onClick={() => setCurrentScreen('shiny')}>
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-charm.png" alt="Shiny" />
+            <span>Shiny Hunt</span>
           </div>
-          <span>Rastreador</span>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const renderTypes = () => (
     <div className="mobile-app-screen types-screen">

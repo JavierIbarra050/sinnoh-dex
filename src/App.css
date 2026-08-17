@@ -260,131 +260,120 @@ body {
 }
 
 /* Mobile Lobby */
-/* Rotom OS Styles */
-.mobile-lobby.rotom-os {
+/* TCG OS Styles */
+.mobile-lobby.tcg-os {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, #ff7a00, #ff4500);
+  padding: 30px 20px;
+  background: radial-gradient(circle at top left, #1e293b, #0f172a);
   height: 100%;
-  position: relative;
-  overflow: hidden;
   color: #fff;
-}
-
-.rotom-watermark {
-  position: absolute;
-  bottom: -20px;
-  right: -50px;
-  width: 350px;
-  opacity: 0.15;
-  pointer-events: none;
-  transform: rotate(-15deg);
-  z-index: 1;
-}
-
-/* Rotom Notch & Eyes */
-.rotom-notch {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 30px;
-  background-color: #111;
-  border-radius: 0 0 15px 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
-  z-index: 10;
-}
-
-.rotom-eye {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #00ffff;
-  box-shadow: 0 0 8px #00ffff;
-  animation: blink 4s infinite;
-}
-
-@keyframes blink {
-  0%, 96%, 98% { transform: scaleY(1); }
-  97% { transform: scaleY(0.1); }
-}
-
-.lobby-header {
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 40px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-  position: relative;
-  z-index: 2;
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 8px);
 }
 
-.lobby-header h1 {
-  font-size: 32px;
+.trainer-id-badge {
+  background: linear-gradient(135deg, #ffd700, #daa520);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  color: #111;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 2px 5px rgba(255,255,255,0.8);
+  border: 2px solid #b8860b;
+}
+
+.trainer-info h2 {
+  margin: 0;
+  font-size: 22px;
   font-weight: 900;
-  letter-spacing: 2px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.lobby-header p {
-  font-size: 16px;
-  opacity: 0.9;
+.trainer-id {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
 }
 
-/* App Bubbles */
-.lobby-grid {
+.trainer-stats {
+  margin-top: 15px;
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.stat-bar-bg {
+  width: 100%;
+  height: 12px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.stat-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  border-radius: 6px;
+}
+
+.stat-text {
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+  margin-top: 5px;
+}
+
+/* TCG Cards Grid */
+.tcg-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
-  width: 100%;
-  padding: 0 10px;
-  position: relative;
-  z-index: 2;
+  gap: 20px;
 }
 
-.app-bubble {
+.tcg-card {
+  aspect-ratio: 2.5 / 3.5;
+  border-radius: 12px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.app-bubble:active {
-  transform: scale(0.9);
-}
-
-.bubble-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 25px;
-  display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3), inset 0 5px 10px rgba(255,255,255,0.4);
-  position: relative;
-  overflow: hidden;
+  gap: 15px;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4), inset 0 0 0 4px rgba(255,255,255,0.2);
 }
 
-.bubble-icon img {
-  width: 50px;
-  height: 50px;
+.tcg-card:hover, .tcg-card:active {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 20px 30px rgba(0,0,0,0.6), inset 0 0 0 4px rgba(255,255,255,0.4);
+}
+
+.tcg-card img {
+  width: 60px;
+  height: 60px;
   object-fit: contain;
-  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
 }
 
-.app-bubble span {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+.tcg-card span {
+  font-size: 15px;
+  font-weight: 800;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
+
+.regional-card { background: linear-gradient(135deg, #ef4444, #991b1b); }
+.national-card { background: linear-gradient(135deg, #a855f7, #6b21a8); }
+.types-card { background: linear-gradient(135deg, #3b82f6, #1e40af); }
+.shiny-card { background: linear-gradient(135deg, #f59e0b, #b45309); }
 
 /* Shared App Screen */
 .mobile-app-screen {
