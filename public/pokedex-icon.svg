@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Base circle (Border) -->
+  <circle cx="256" cy="256" r="250" fill="#222"/>
+  
+  <!-- Top Red Half -->
+  <path d="M256 24C127.8 24 24 127.8 24 256h464C488 127.8 384.2 24 256 24z" fill="#E3350D"/>
+  
+  <!-- Bottom White Half -->
+  <path d="M256 488c128.2 0 232-103.8 232-232H24c0 128.2 103.8 232 232 232z" fill="#F0F0F0"/>
+  
+  <!-- Center Black Band -->
+  <rect x="10" y="240" width="492" height="32" fill="#222"/>
+  
+  <!-- Outer Black Ring -->
+  <circle cx="256" cy="256" r="80" fill="#222"/>
+  
+  <!-- Inner White Button -->
+  <circle cx="256" cy="256" r="56" fill="#F0F0F0"/>
+  
+  <!-- Button Inner Detail (Shine) -->
+  <circle cx="256" cy="256" r="32" fill="#FFF"/>
+  <circle cx="246" cy="246" r="12" fill="#FFF" opacity="0.8"/>
+  
+  <!-- Outer Border (Thick) -->
+  <circle cx="256" cy="256" r="240" fill="none" stroke="#222" stroke-width="24"/>
+</svg>
