@@ -157,23 +157,33 @@ body {
 }
 
 .action-button {
-  width: 45px;
-  height: 45px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   border: none;
   background: radial-gradient(circle at 30% 30%, #555, #111);
-  color: #a0a0a0;
-  font-weight: bold;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
 }
 .action-button:active {
   transform: scale(0.95);
   box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.button-a { 
+  background: radial-gradient(circle at 30% 30%, #4a90e2, #0d2875); 
+  border: 2px solid #081745; 
+}
+.button-b { 
+  background: radial-gradient(circle at 30% 30%, #e3a9d9, #8a2063); 
+  border: 2px solid #4a1135; 
+}
+.action-button:not(.active) {
+  opacity: 0.5;
+  filter: grayscale(100%);
 }
 
 /* Header & Nav */
