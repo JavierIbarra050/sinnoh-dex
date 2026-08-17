@@ -585,6 +585,16 @@ export default function App() {
     );
   };
 
+  const getGlobalProgress = () => {
+    let list = NATIONAL_DEX;
+    if (currentScreen === 'pokedex-regional') {
+      list = [...BASE_DEX, ...POSTGAME_COMMON, ...(version === 'diamond' ? POSTGAME_DIAMOND : POSTGAME_PEARL)];
+    }
+    const total = list.length;
+    const caught = list.filter(name => caughtMap[name]).length;
+    return `${String(caught).padStart(3, '0')} / ${String(total).padStart(3, '0')}`;
+  };
+
   return (
     <div className="pokedex-viewport">
       <div className="pokedex-shell">
@@ -616,7 +626,7 @@ export default function App() {
           </div>
           
           <div className="status-display">
-            {Object.values(caughtMap).filter(Boolean).length}
+            {getGlobalProgress()}
           </div>
 
           <div className="buttons">
