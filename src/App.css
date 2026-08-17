@@ -445,23 +445,21 @@ body {
   background: #020617;
   border-bottom: 3px solid #0f172a;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  position: relative;
   padding: 15px;
 }
 .pokedex-app .nav-bar h2 {
   color: #38bdf8;
   font-family: 'Courier New', monospace;
   font-weight: 900;
-  font-size: 18px;
+  font-size: 16px;
   text-transform: uppercase;
   margin: 0;
   text-shadow: 0 0 6px rgba(56, 189, 248, 0.4);
+  text-align: right;
 }
 .pokedex-app .back-btn {
-  position: absolute;
-  left: 15px;
   color: #020617;
   background: #38bdf8;
   border: 2px solid #0ea5e9;
