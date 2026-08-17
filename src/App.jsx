@@ -246,6 +246,7 @@ export default function App() {
 
   const renderLobby = () => (
     <div className="mobile-lobby rotom-os">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/479.png" className="rotom-watermark" alt="Rotom" />
       <div className="rotom-notch">
         <div className="rotom-eye"></div>
         <div className="rotom-eye"></div>
@@ -253,7 +254,7 @@ export default function App() {
       
       <div className="lobby-header">
         <h1>Rotom OS</h1>
-        <p>¿A dónde vamos hoy, bzzt?</p>
+        <p>Aloha! Sistema Inicializado.</p>
       </div>
 
       <div className="lobby-grid">
