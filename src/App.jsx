@@ -592,12 +592,44 @@ export default function App() {
   };
 
   return (
-    <div className="iphone-viewport">
-      <div className="iphone-screen">
-        {currentScreen === 'lobby' && renderLobby()}
-        {currentScreen === 'types' && renderTypes()}
-        {currentScreen === 'shiny' && renderShiny()}
-        {(currentScreen === 'pokedex-regional' || currentScreen === 'pokedex-national') && renderPokedex()}
+    <div className="pokedex-viewport">
+      <div className="pokedex-shell">
+        <div className="lights-container">
+          <div className="big-blue-light"></div>
+          <div className="small-lights">
+            <div className="small-light red"></div>
+            <div className="small-light yellow"></div>
+            <div className="small-light green"></div>
+          </div>
+        </div>
+
+        <div className="screen-bezel">
+          <div className="screen-display">
+            {currentScreen === 'lobby' && renderLobby()}
+            {currentScreen === 'types' && renderTypes()}
+            {currentScreen === 'shiny' && renderShiny()}
+            {(currentScreen === 'pokedex-regional' || currentScreen === 'pokedex-national') && renderPokedex()}
+          </div>
+        </div>
+
+        <div className="controls">
+          <div className="d-pad">
+            <div className="d-pad-part d-pad-up" onClick={() => setCurrentScreen('lobby')}></div>
+            <div className="d-pad-part d-pad-left" onClick={() => setCurrentScreen('lobby')}></div>
+            <div className="d-pad-part d-pad-center" onClick={() => setCurrentScreen('lobby')}></div>
+            <div className="d-pad-part d-pad-right" onClick={() => setCurrentScreen('lobby')}></div>
+            <div className="d-pad-part d-pad-down" onClick={() => setCurrentScreen('lobby')}></div>
+          </div>
+          
+          <div className="status-display">
+            {Object.values(caughtMap).filter(Boolean).length}
+          </div>
+
+          <div className="buttons">
+            <button className="action-button button-b">B</button>
+            <button className="action-button button-a">A</button>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -13,8 +13,8 @@ body {
   user-select: none;
 }
 
-/* Simulate iPhone 13 layout (390 x 844) on desktop, but make it responsive */
-.iphone-viewport {
+/* Simulate Pokedex Shell layout */
+.pokedex-viewport {
   width: 100vw;
   height: 100dvh;
   display: flex;
@@ -23,25 +23,155 @@ body {
   background-color: #111;
 }
 
-.iphone-screen {
+.pokedex-shell {
   width: 100%;
   height: 100%;
   max-width: 450px;
-  background: radial-gradient(circle at top, #1e3a8a 0%, #0f172a 100%);
+  background-color: #e3350d;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  padding: 15px 15px 25px 15px;
 }
 
 @media (min-width: 450px) {
-  .iphone-screen {
-    height: 844px; /* iPhone 13 height */
-    width: 390px; /* iPhone 13 width */
-    border-radius: 40px;
-    border: 8px solid #222;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  .pokedex-shell {
+    height: 844px;
+    width: 390px;
+    border-radius: 25px;
+    border: 4px solid #941e10;
+    box-shadow: inset -5px -5px 15px rgba(0,0,0,0.3), inset 5px 5px 15px rgba(255,255,255,0.2), 0 20px 40px rgba(0,0,0,0.8);
   }
+}
+
+/* Lights at top left */
+.lights-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.big-blue-light {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #a0e0ff, #2980b9);
+  border: 4px solid #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.small-lights {
+  display: flex;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.small-light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  box-shadow: inset 2px 2px 4px rgba(255,255,255,0.5);
+}
+
+.small-light.red { background-color: #ff0000; }
+.small-light.yellow { background-color: #f1c40f; }
+.small-light.green { background-color: #2ecc71; }
+
+/* Screen Area */
+.screen-bezel {
+  background-color: #dedede;
+  border-radius: 15px 15px 15px 45px;
+  padding: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.screen-display {
+  background: #0f172a;
+  border-radius: 8px;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Bottom Controls */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 10px;
+}
+
+/* D-Pad */
+.d-pad {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.d-pad-part {
+  background-color: #222;
+  position: absolute;
+  box-shadow: inset 1px 1px 2px rgba(255,255,255,0.2), inset -1px -1px 2px rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+.d-pad-part:active { background-color: #111; }
+
+.d-pad-up { top: 0; left: 30px; width: 30px; height: 30px; border-radius: 5px 5px 0 0; }
+.d-pad-down { bottom: 0; left: 30px; width: 30px; height: 30px; border-radius: 0 0 5px 5px; }
+.d-pad-left { top: 30px; left: 0; width: 30px; height: 30px; border-radius: 5px 0 0 5px; }
+.d-pad-right { top: 30px; right: 0; width: 30px; height: 30px; border-radius: 0 5px 5px 0; }
+.d-pad-center { top: 30px; left: 30px; width: 30px; height: 30px; }
+
+/* Center Status */
+.status-display {
+  background-color: #2ecc71;
+  color: #000;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid #222;
+  box-shadow: inset 2px 2px 5px rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+}
+
+/* A/B Buttons */
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.action-button {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background: radial-gradient(circle at 30% 30%, #555, #111);
+  color: #a0a0a0;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+.action-button:active {
+  transform: scale(0.95);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 /* Header & Nav */
