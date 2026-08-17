@@ -621,10 +621,10 @@ export default function App() {
 
           <div className="buttons">
             <button className={`action-button button-b ${version === 'pearl' ? 'active' : ''}`} onClick={() => setVersion('pearl')} title="Shining Pearl">
-              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/484.png" alt="Palkia" style={{width: '60px', height: '60px', transform: 'scale(1.3)'}} />
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/484.png" alt="Palkia" style={{width: '60px', height: '60px', transform: 'scale(1.8) translateY(-5px)'}} />
             </button>
             <button className={`action-button button-a ${version === 'diamond' ? 'active' : ''}`} onClick={() => setVersion('diamond')} title="Brilliant Diamond">
-              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/483.png" alt="Dialga" style={{width: '60px', height: '60px', transform: 'scale(1.3)'}} />
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/483.png" alt="Dialga" style={{width: '60px', height: '60px', transform: 'scale(1.8) translateY(-5px)'}} />
             </button>
           </div>
         </div>
