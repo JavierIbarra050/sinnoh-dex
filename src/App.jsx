@@ -625,9 +625,15 @@ export default function App() {
             <div className="d-pad-part d-pad-down" onClick={() => setCurrentScreen('lobby')}></div>
           </div>
           
-          <div className="status-display">
-            {getGlobalProgress()}
-          </div>
+          {(currentScreen === 'pokedex-regional' || currentScreen === 'pokedex-national') ? (
+            <div className="status-display">
+              {getGlobalProgress()}
+            </div>
+          ) : (
+            <div className="status-display" style={{visibility: 'hidden'}}>
+              000 / 000
+            </div>
+          )}
 
           <div className="buttons">
             <button className={`action-button button-b ${version === 'pearl' ? 'active' : ''}`} onClick={() => setVersion('pearl')} title="Shining Pearl">
