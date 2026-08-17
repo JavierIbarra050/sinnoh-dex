@@ -147,6 +147,8 @@ export default function App() {
   const [showShinyImage, setShowShinyImage] = useState(false);
   const [showShinyModal, setShowShinyModal] = useState(false);
   const [showCalcModal, setShowCalcModal] = useState(false);
+  const [showAddShinyHunt, setShowAddShinyHunt] = useState(false);
+  const [shinyHuntSearch, setShinyHuntSearch] = useState('');
 
   const toggleGlobalType = (type) => {
     if (selectedTypes.includes(type)) {
@@ -334,7 +336,16 @@ export default function App() {
 
   const renderShiny = () => {
     const list = [...BASE_DEX, ...POSTGAME_COMMON, ...(version === 'diamond' ? POSTGAME_DIAMOND : POSTGAME_PEARL)];
-    const shinyHuntedList = list.filter(name => shinyCounters[name] > 0);
+    const shinyHuntedList = list.filter(name => shinyCounters[name] !== undefined);
+    
+    const unhuntedList = list.filter(name => shinyCounters[name] === undefined && name.toLowerCase().includes(shinyHuntSearch.toLowerCase()));
+
+    const addShinyHunt = (name) => {
+      updateCounter(name, 0);
+      setShowAddShinyHunt(false);
+      setShinyHuntSearch('');
+    };
+
     return (
       <div className="mobile-app-screen shiny-hunt-screen">
         <div className="nav-bar">
@@ -342,13 +353,22 @@ export default function App() {
           <h2>Rastreador Shiny</h2>
         </div>
         <div className="content-area">
-          <p style={{textAlign: 'center', fontSize: '14px', color: '#ccc', margin: '15px 0'}}>Tus cadenas y Soft Resets activos:</p>
+          <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '10px 0 20px'}}>
+            <p style={{fontSize: '14px', color: '#ccc', margin: 0}}>Tus cadenas y SR activos:</p>
+            <button 
+              onClick={() => setShowAddShinyHunt(true)}
+              style={{background: '#fbbf24', border: 'none', borderRadius: '6px', padding: '6px 12px', fontWeight: 'bold', cursor: 'pointer', color: '#000'}}
+            >
+              + Añadir Hunt
+            </button>
+          </div>
+
           <div className="shiny-list">
             {shinyHuntedList.length === 0 ? (
-              <p style={{textAlign: 'center', fontStyle: 'italic', marginTop: '30px'}}>No tienes contadores activos.</p>
+              <p style={{textAlign: 'center', fontStyle: 'italic', marginTop: '30px', color: '#888'}}>No tienes contadores activos. ¡Añade tu primer objetivo!</p>
             ) : (
               shinyHuntedList.sort((a,b) => shinyCounters[b] - shinyCounters[a]).map(name => (
-                <div key={name} className="shiny-card">
+                <div key={name} className="shiny-card" onClick={() => { setSelectedPokemon({name}); setCurrentScreen('pokedex-national'); }}>
                   <div>
                     <span className="shiny-name">{name}</span>
                     <div className="shiny-method">{getShinyMethod(name).title}</div>
@@ -361,6 +381,36 @@ export default function App() {
             )}
           </div>
         </div>
+
+        {showAddShinyHunt && (
+          <div className="modal-overlay" onClick={() => setShowAddShinyHunt(false)}>
+            <div className="modal-content" onClick={e => e.stopPropagation()} style={{maxHeight: '80vh', display: 'flex', flexDirection: 'column'}}>
+              <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px'}}>
+                <h3 className="modal-title" style={{margin: 0}}>Nueva Shiny Hunt</h3>
+                <button className="modal-close" onClick={() => setShowAddShinyHunt(false)} style={{position: 'static'}}>X</button>
+              </div>
+              <input 
+                type="text" 
+                placeholder="Buscar Pokémon..." 
+                value={shinyHuntSearch}
+                onChange={e => setShinyHuntSearch(e.target.value)}
+                style={{width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ccc', marginBottom: '15px', color: '#000'}}
+              />
+              <div style={{overflowY: 'auto', flex: 1}}>
+                {unhuntedList.slice(0, 50).map(name => (
+                  <div 
+                    key={name}
+                    onClick={() => addShinyHunt(name)}
+                    style={{padding: '12px', borderBottom: '1px solid #eee', cursor: 'pointer', color: '#000', fontWeight: 'bold'}}
+                  >
+                    {name}
+                  </div>
+                ))}
+                {unhuntedList.length === 0 && <p style={{color: '#888', textAlign: 'center'}}>No se encontraron Pokémon.</p>}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   };
