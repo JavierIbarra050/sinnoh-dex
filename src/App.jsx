@@ -394,19 +394,19 @@ export default function App() {
                 placeholder="Buscar Pokémon..." 
                 value={shinyHuntSearch}
                 onChange={e => setShinyHuntSearch(e.target.value)}
-                style={{width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ccc', marginBottom: '15px', color: '#000'}}
+                style={{width: '100%', padding: '10px', borderRadius: '4px', border: '2px solid #334155', background: '#0f172a', marginBottom: '15px', color: '#38bdf8', fontFamily: 'Courier New, monospace', fontWeight: 'bold'}}
               />
               <div style={{overflowY: 'auto', flex: 1}}>
                 {unhuntedList.slice(0, 50).map(name => (
                   <div 
                     key={name}
                     onClick={() => addShinyHunt(name)}
-                    style={{padding: '12px', borderBottom: '1px solid #eee', cursor: 'pointer', color: '#000', fontWeight: 'bold'}}
+                    style={{padding: '12px', borderBottom: '1px solid #334155', cursor: 'pointer', color: '#f8fafc', fontFamily: 'Courier New, monospace', fontWeight: 'bold'}}
                   >
                     {name}
                   </div>
                 ))}
-                {unhuntedList.length === 0 && <p style={{color: '#888', textAlign: 'center'}}>No se encontraron Pokémon.</p>}
+                {unhuntedList.length === 0 && <p style={{color: '#94a3b8', textAlign: 'center'}}>No se encontraron Pokémon.</p>}
               </div>
             </div>
           </div>
