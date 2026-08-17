@@ -444,16 +444,40 @@ body {
 .pokedex-app .nav-bar {
   background: #020617;
   border-bottom: 3px solid #0f172a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 15px;
 }
 .pokedex-app .nav-bar h2 {
   color: #38bdf8;
   font-family: 'Courier New', monospace;
   font-weight: 900;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 0 0 6px rgba(56, 189, 248, 0.4);
 }
 .pokedex-app .back-btn {
-  color: #38bdf8;
-  background: transparent;
-  border: 1px solid #38bdf8;
+  position: absolute;
+  left: 15px;
+  color: #020617;
+  background: #38bdf8;
+  border: 2px solid #0ea5e9;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-weight: 900;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+  transition: all 0.1s;
+}
+.pokedex-app .back-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
 }
 
 .list-view-container {
