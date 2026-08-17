@@ -290,24 +290,36 @@ export default function App() {
   };
 
   const renderTypes = () => (
-    <div className="mobile-app-screen types-screen">
+    <div className="mobile-app-screen pokedex-app types-screen">
       <div className="nav-bar">
         <button className="back-btn" onClick={() => setCurrentScreen('lobby')}>← Atrás</button>
-        <h2>Calculadora de Tipos</h2>
+        <h2>Calculadora Tipos</h2>
       </div>
       <div className="content-area">
-        <p style={{color: '#ccc', textAlign: 'center', margin: '10px 0'}}>Selecciona 1 o 2 tipos:</p>
+        <p style={{color: '#ccc', textAlign: 'center', margin: '10px 0', fontFamily: 'Courier New, monospace', fontSize: '14px'}}>Selecciona 1 o 2 tipos:</p>
         <div className="type-selector-grid">
-          {Object.keys(TYPE_CHART).map(t => (
-            <span 
-              key={t} 
-              className={`type-badge type-${t} type-badge-btn ${!selectedTypes.includes(t) && selectedTypes.length === 2 ? 'dimmed' : ''}`}
-              onClick={() => toggleGlobalType(t)}
-              style={{ border: selectedTypes.includes(t) ? '2px solid #fff' : '2px solid transparent' }}
-            >
-              {t}
-            </span>
-          ))}
+          {Object.keys(TYPE_CHART).map(t => {
+            const TYPE_TRANSLATIONS = {
+              NORMAL: 'NORMAL', FIRE: 'FUEGO', WATER: 'AGUA', ELECTRIC: 'ELÉCTR',
+              GRASS: 'PLANTA', ICE: 'HIELO', FIGHTING: 'LUCHA', POISON: 'VENENO',
+              GROUND: 'TIERRA', FLYING: 'VOLADOR', PSYCHIC: 'PSÍQ.', BUG: 'BICHO',
+              ROCK: 'ROCA', GHOST: 'FANTASMA', DRAGON: 'DRAGÓN', DARK: 'SINIES.',
+              STEEL: 'ACERO', FAIRY: 'HADA'
+            };
+            return (
+              <span 
+                key={t} 
+                className={`type-badge type-${t} type-badge-btn ${!selectedTypes.includes(t) && selectedTypes.length === 2 ? 'dimmed' : ''}`}
+                onClick={() => toggleGlobalType(t)}
+                style={{ 
+                  borderColor: selectedTypes.includes(t) ? '#ef4444' : 'rgba(255,255,255,0.2)',
+                  boxShadow: selectedTypes.includes(t) ? '0 0 10px #ef4444' : '2px 2px 0px rgba(0,0,0,0.5)'
+                }}
+              >
+                {TYPE_TRANSLATIONS[t.toUpperCase()] || t}
+              </span>
+            );
+          })}
         </div>
         <div style={{display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '15px', padding: '0 10px'}}>
           {(() => {
@@ -335,7 +347,7 @@ export default function App() {
   );
 
   const renderShiny = () => {
-    const list = [...BASE_DEX, ...POSTGAME_COMMON, ...(version === 'diamond' ? POSTGAME_DIAMOND : POSTGAME_PEARL)];
+    const list = NATIONAL_DEX;
     const shinyHuntedList = list.filter(name => shinyCounters[name] !== undefined);
     
     const unhuntedList = list.filter(name => shinyCounters[name] === undefined && name.toLowerCase().includes(shinyHuntSearch.toLowerCase()));
@@ -358,18 +370,36 @@ export default function App() {
       }
     };
 
+    const getShinyOddsDisplay = (name, counter) => {
+      const method = getShinyMethod(name).title;
+      if (method.includes("Poké Radar")) {
+        if (counter >= 40) return 'Ratio: 1/99 (Máx)';
+        if (counter >= 39) return 'Ratio: 1/200';
+        if (counter >= 38) return 'Ratio: 1/400';
+        if (counter >= 37) return 'Ratio: 1/799';
+        if (counter >= 36) return 'Ratio: 1/993';
+        if (counter >= 30) return 'Ratio: 1/1310';
+        if (counter >= 20) return 'Ratio: 1/1820';
+        if (counter >= 10) return 'Ratio: 1/2521';
+        return 'Ratio: 1/4096';
+      } else {
+        const prob = (1 - Math.pow((4095/4096), counter)) * 100;
+        return `${prob.toFixed(2)}% prob. accum.`;
+      }
+    };
+
     return (
-      <div className="mobile-app-screen shiny-hunt-screen">
+      <div className="mobile-app-screen pokedex-app shiny-hunt-screen">
         <div className="nav-bar">
           <button className="back-btn" onClick={() => setCurrentScreen('lobby')}>← Atrás</button>
           <h2>Rastreador Shiny</h2>
         </div>
         <div className="content-area">
           <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '10px 0 20px'}}>
-            <p style={{fontSize: '14px', color: '#ccc', margin: 0}}>Tus cadenas y SR activos:</p>
+            <p style={{fontSize: '12px', color: '#94a3b8', margin: 0, fontFamily: 'Courier New, monospace', fontWeight: 'bold', textTransform: 'uppercase'}}>Cadenas y SR activos:</p>
             <button 
               onClick={() => setShowAddShinyHunt(true)}
-              style={{background: '#fbbf24', border: 'none', borderRadius: '6px', padding: '6px 12px', fontWeight: 'bold', cursor: 'pointer', color: '#000'}}
+              style={{background: 'rgba(239, 68, 68, 0.1)', border: '1px solid #ef4444', borderRadius: '4px', padding: '6px 12px', fontWeight: '900', cursor: 'pointer', color: '#ef4444', fontFamily: 'Courier New, monospace', textTransform: 'uppercase', boxShadow: '2px 2px 0 rgba(0,0,0,0.5)'}}
             >
               + Añadir Hunt
             </button>
@@ -379,55 +409,69 @@ export default function App() {
             {shinyHuntedList.length === 0 ? (
               <p style={{textAlign: 'center', fontStyle: 'italic', marginTop: '30px', color: '#888'}}>No tienes contadores activos. ¡Añade tu primer objetivo!</p>
             ) : (
-              shinyHuntedList.sort((a,b) => shinyCounters[b] - shinyCounters[a]).map(name => (
-                <div key={name} className="shiny-card" onClick={() => { setSelectedPokemon({name}); setCurrentScreen('pokedex-national'); }}>
-                  <div>
-                    <span className="shiny-name">{name}</span>
-                    <div className="shiny-method">{getShinyMethod(name).title}</div>
-                  </div>
-                  <div style={{display: 'flex', alignItems: 'center', gap: '15px'}}>
-                    <div className="shiny-counter-val">
-                      {shinyCounters[name]}
+              shinyHuntedList.sort((a,b) => shinyCounters[b] - shinyCounters[a]).map(name => {
+                const dexNum = NATIONAL_DEX.indexOf(name) + 1;
+                const counter = shinyCounters[name] || 0;
+                return (
+                  <div key={name} className="shiny-card">
+                    <button className="shiny-delete-btn" onClick={(e) => removeShinyHunt(name, e)} title="Borrar Hunt">✕</button>
+                    <div className="shiny-card-left" onClick={() => { setSelectedPokemon({name}); setCurrentScreen('pokedex-national'); }}>
+                      <img 
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${dexNum}.png`} 
+                        alt={`${name} shiny`}
+                        className="shiny-sprite"
+                        loading="lazy"
+                      />
+                      <div className="shiny-info">
+                        <span className="shiny-name">{name}</span>
+                        <div className="shiny-method">{getShinyMethod(name).title}</div>
+                        <div className="shiny-odds">{getShinyOddsDisplay(name, counter)}</div>
+                      </div>
                     </div>
-                    <button 
-                      onClick={(e) => removeShinyHunt(name, e)}
-                      style={{background: 'rgba(239, 68, 68, 0.1)', border: '2px solid #ef4444', borderRadius: '6px', padding: '4px 10px', color: '#ef4444', cursor: 'pointer', fontWeight: 'bold', fontSize: '14px'}}
-                      title="Borrar Hunt"
-                    >
-                      ✕
-                    </button>
+                    <div className="shiny-card-right">
+                      <div className="shiny-counter-controls">
+                        <button className="counter-btn minus" onClick={(e) => { e.stopPropagation(); updateCounter(name, -1); }}>-</button>
+                        <div className="shiny-counter-val">{String(counter).padStart(4, '0')}</div>
+                        <button className="counter-btn plus" onClick={(e) => { e.stopPropagation(); updateCounter(name, 1); }}>+</button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              ))
+                );
+              })
             )}
           </div>
         </div>
 
         {showAddShinyHunt && (
           <div className="modal-overlay" onClick={() => setShowAddShinyHunt(false)}>
-            <div className="modal-content" onClick={e => e.stopPropagation()} style={{maxHeight: '80vh', display: 'flex', flexDirection: 'column'}}>
-              <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px'}}>
-                <h3 className="modal-title" style={{margin: 0}}>Nueva Shiny Hunt</h3>
-                <button className="modal-close" onClick={() => setShowAddShinyHunt(false)} style={{position: 'static'}}>X</button>
+            <div className="retro-modal" onClick={e => e.stopPropagation()}>
+              <div className="retro-modal-header">
+                <h3 className="modal-title">NUEVA SHINY HUNT</h3>
+                <button className="modal-close-btn" onClick={() => setShowAddShinyHunt(false)}>✕</button>
               </div>
               <input 
                 type="text" 
-                placeholder="Buscar Pokémon..." 
+                placeholder="BUSCAR POKÉMON..." 
+                className="retro-search-input"
                 value={shinyHuntSearch}
                 onChange={e => setShinyHuntSearch(e.target.value)}
-                style={{width: '100%', padding: '10px', borderRadius: '4px', border: '2px solid #334155', background: '#0f172a', marginBottom: '15px', color: '#38bdf8', fontFamily: 'Courier New, monospace', fontWeight: 'bold'}}
               />
-              <div style={{overflowY: 'auto', flex: 1}}>
-                {unhuntedList.slice(0, 50).map(name => (
-                  <div 
-                    key={name}
-                    onClick={() => addShinyHunt(name)}
-                    style={{padding: '12px', borderBottom: '1px solid #334155', cursor: 'pointer', color: '#f8fafc', fontFamily: 'Courier New, monospace', fontWeight: 'bold'}}
-                  >
-                    {name}
-                  </div>
-                ))}
-                {unhuntedList.length === 0 && <p style={{color: '#94a3b8', textAlign: 'center'}}>No se encontraron Pokémon.</p>}
+              <div className="retro-modal-list">
+                {unhuntedList.map(name => {
+                  const dexNum = NATIONAL_DEX.indexOf(name) + 1;
+                  return (
+                    <div 
+                      key={name}
+                      className="retro-list-item"
+                      onClick={() => addShinyHunt(name)}
+                    >
+                      <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${dexNum}.png`} alt={name} className="retro-list-sprite" loading="lazy" />
+                      <span className="retro-list-name">{name}</span>
+                      <span className="retro-list-num">#{String(dexNum).padStart(3, '0')}</span>
+                    </div>
+                  );
+                })}
+                {unhuntedList.length === 0 && <p className="retro-no-results">No se encontraron Pokémon.</p>}
               </div>
             </div>
           </div>
@@ -641,23 +685,31 @@ export default function App() {
                 })
                 .map((name) => {
                   const originalIndex = currentList.indexOf(name);
+                  const nationalDexNum = NATIONAL_DEX.indexOf(name) + 1;
+                  const isCaught = caughtMap[name];
+                  
                   return (
                     <div 
                       key={name} 
-                      className={`pokemon-item ${caughtMap[name] ? 'caught' : ''}`}
-                      onClick={() => handleSelect(name)}
+                      className={`pokemon-grid-card ${isCaught ? 'caught' : 'uncaught'}`}
+                      onClick={(e) => toggleCaught(name, e)}
                     >
-                      <div className="pokemon-item-info">
-                        <span className="pokemon-number">#{String(originalIndex + 1).padStart(3, '0')}</span>
-                        <span className="pokemon-name">{name}</span>
+                      <div className="card-header">
+                        <span className="dex-num">#{String(originalIndex + 1).padStart(3, '0')}</span>
                       </div>
-                      <input 
-                        type="checkbox" 
-                        className="caught-checkbox"
-                        checked={!!caughtMap[name]}
-                        onChange={(e) => toggleCaught(name, e)}
-                        onClick={(e) => e.stopPropagation()}
+                      <img 
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${nationalDexNum}.png`} 
+                        alt={name}
+                        className="pokemon-sprite"
+                        loading="lazy"
                       />
+                      <div className="card-name">{name}</div>
+                      <button 
+                        className="info-btn"
+                        onClick={(e) => { e.stopPropagation(); handleSelect(name); }}
+                      >
+                        + Info
+                      </button>
                     </div>
                   )
                 })}
