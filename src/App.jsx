@@ -4,18 +4,18 @@ import { NATIONAL_DEX } from './nationalDex.js';
 import './App.css';
 
 const BASE_DEX = [
-  "Turtwig", "Grotle", "Torterra", "Chimchar", "Monferno", "Infernape", "Piplup", "Prinplup", "Empoleon", "Starly", "Staravia", "Staraptor", "Bidoof", "Bibarel", "Kricketot", "Kricketune", "Shinx", "Luxio", "Luxray", "Abra", "Kadabra", "Alakazam", "Magikarp", "Gyarados", "Budew", "Roselia", "Roserade", "Zubat", "Golbat", "Crobat", "Geodude", "Graveler", "Golem", "Onix", "Steelix", "Cranidos", "Rampardos", "Shieldon", "Bastiodon", "Machop", "Machoke", "Machamp", "Psyduck", "Golduck", "Burmy", "Wormadam", "Mothim", "Wurmple", "Silcoon", "Beautifly", "Cascoon", "Dustox", "Combee", "Vespiquen", "Pachirisu", "Buizel", "Floatzel", "Cherubi", "Cherrim", "Shellos", "Gastrodon", "Heracross", "Aipom", "Ambipom", "Drifloon", "Drifblim", "Buneary", "Lopunny", "Gastly", "Haunter", "Gengar", "Misdreavus", "Mismagius", "Murkrow", "Honchkrow", "Glameow", "Purugly", "Goldeen", "Seaking", "Barboach", "Whiscash", "Chingling", "Chimecho", "Stunky", "Skuntank", "Meditite", "Medicham", "Bronzor", "Bronzong", "Ponyta", "Rapidash", "Bonsly", "Sudowoodo", "Mime Jr.", "Mr. Mime", "Happiny", "Chansey", "Blissey", "Cleffa", "Clefairy", "Clefable", "Chatot", "Pichu", "Pikachu", "Raichu", "Hoothoot", "Noctowl", "Spiritomb", "Gible", "Gabite", "Garchomp", "Munchlax", "Snorlax", "Unown", "Riolu", "Lucario", "Wooper", "Quagsire", "Wingull", "Pelipper", "Girafarig", "Hippopotas", "Hippowdon", "Azurill", "Marill", "Azumarill", "Skorupi", "Drapion", "Croagunk", "Toxicroak", "Carnivine", "Remoraid", "Octillery", "Finneon", "Lumineon", "Tentacool", "Tentacruel", "Feebas", "Milotic", "Mantyke", "Mantine", "Snover", "Abomasnow", "Sneasel", "Weavile", "Uxie", "Mesprit", "Azelf", "Dialga", "Palkia", "Manaphy"
+  "Turtwig", "Grotle", "Torterra", "Chimchar", "Monferno", "Infernape", "Piplup", "Prinplup", "Empoleon", "Starly", "Staravia", "Staraptor", "Bidoof", "Bibarel", "Kricketot", "Kricketune", "Shinx", "Luxio", "Luxray", "Abra", "Kadabra", "Alakazam", "Magikarp", "Gyarados", "Budew", "Roselia", "Roserade", "Zubat", "Golbat", "Crobat", "Geodude", "Graveler", "Golem", "Onix", "Steelix", "Cranidos", "Rampardos", "Shieldon", "Bastiodon", "Machop", "Machoke", "Machamp", "Psyduck", "Golduck", "Burmy", "Wormadam", "Mothim", "Wurmple", "Silcoon", "Beautifly", "Cascoon", "Dustox", "Combee", "Vespiquen", "Pachirisu", "Buizel", "Floatzel", "Cherubi", "Cherrim", "Shellos", "Gastrodon", "Heracross", "Aipom", "Ambipom", "Drifloon", "Drifblim", "Buneary", "Lopunny", "Gastly", "Haunter", "Gengar", "Misdreavus", "Mismagius", "Murkrow", "Honchkrow", "Glameow", "Purugly", "Goldeen", "Seaking", "Barboach", "Whiscash", "Chingling", "Chimecho", "Stunky", "Skuntank", "Meditite", "Medicham", "Bronzor", "Bronzong", "Ponyta", "Rapidash", "Bonsly", "Sudowoodo", "Mime Jr.", "Mr. Mime", "Happiny", "Chansey", "Blissey", "Cleffa", "Clefairy", "Clefable", "Chatot", "Pichu", "Pikachu", "Raichu", "Hoothoot", "Noctowl", "Spiritomb", "Gible", "Gabite", "Garchomp", "Munchlax", "Snorlax", "Unown", "Riolu", "Lucario", "Wooper", "Quagsire", "Wingull", "Pelipper", "Girafarig", "Hippopotas", "Hippowdon", "Azurill", "Marill", "Azumarill", "Skorupi", "Drapion", "Croagunk", "Toxicroak", "Carnivine", "Remoraid", "Octillery", "Finneon", "Lumineon", "Tentacool", "Tentacruel", "Feebas", "Milotic", "Mantyke", "Mantine", "Snover", "Abomasnow", "Sneasel", "Weavile", "Uxie", "Mesprit", "Azelf", "Dialga", "Palkia"
 ];
 
-const POSTGAME_COMMON = [
-  "Heatran", "Regigigas", "Giratina", "Cresselia", "Mewtwo", "Rayquaza", "Latias", "Latios", "Kyogre", "Groudon", "Regirock", "Regice", "Registeel"
+const PARQUE_HANSA_COMMON = [
+  "Mewtwo", "Rayquaza", "Latias", "Latios", "Kyogre", "Groudon", "Regirock", "Regice", "Registeel"
 ];
 
-const POSTGAME_DIAMOND = [
+const PARQUE_HANSA_DIAMOND = [
   "Ho-Oh", "Raikou", "Entei", "Suicune"
 ];
 
-const POSTGAME_PEARL = [
+const PARQUE_HANSA_PEARL = [
   "Lugia", "Articuno", "Zapdos", "Moltres"
 ];
 
@@ -332,9 +332,8 @@ export default function App() {
   };
 
   const renderLobby = () => {
-    const regionalList = [...BASE_DEX, ...POSTGAME_COMMON, ...(version === 'diamond' ? POSTGAME_DIAMOND : POSTGAME_PEARL)];
-    const regionalTotal = regionalList.length;
-    const regionalCaught = regionalList.filter(name => caughtMap[name]).length;
+    const regionalTotal = BASE_DEX.length;
+    const regionalCaught = BASE_DEX.filter(name => caughtMap[name]).length;
     
     return (
       <div className="mobile-lobby tcg-os">
@@ -570,11 +569,65 @@ export default function App() {
   };
 
   const renderPokedex = () => {
-    const currentList = currentScreen === 'pokedex-national' 
-      ? NATIONAL_DEX 
-      : [...BASE_DEX, ...POSTGAME_COMMON, ...(version === 'diamond' ? POSTGAME_DIAMOND : POSTGAME_PEARL)];
-    const total = currentList.length;
-    const totalCaught = currentList.filter(name => caughtMap[name]).length;
+    let mainList = [];
+    let hansaList = [];
+    if (currentScreen === 'pokedex-national') {
+      mainList = NATIONAL_DEX;
+    } else {
+      mainList = [...BASE_DEX];
+      hansaList = [...PARQUE_HANSA_COMMON, ...(version === 'diamond' ? PARQUE_HANSA_DIAMOND : PARQUE_HANSA_PEARL)];
+    }
+    const currentList = [...mainList, ...hansaList];
+    const listForCounter = currentScreen === 'pokedex-national' ? NATIONAL_DEX : BASE_DEX;
+    const total = listForCounter.length;
+    const totalCaught = listForCounter.filter(name => caughtMap[name]).length;
+
+    const renderGrid = (listToRender) => {
+      const filteredList = listToRender
+        .filter(name => name.toLowerCase().includes(searchTerm.toLowerCase()))
+        .filter(name => {
+          if (filter === 'caught') return caughtMap[name];
+          if (filter === 'uncaught') return !caughtMap[name];
+          return true;
+        });
+
+      if (filteredList.length === 0) return null;
+
+      return (
+        <div className="list-view" style={{ overflowY: 'visible', flex: 'none', minHeight: 'none' }}>
+          {filteredList.map((name) => {
+            const originalIndex = currentList.indexOf(name);
+            const nationalDexNum = NATIONAL_DEX.indexOf(name) + 1;
+            const isCaught = caughtMap[name];
+            
+            return (
+              <div 
+                key={name} 
+                className={`pokemon-grid-card ${isCaught ? 'caught' : 'uncaught'}`}
+                onClick={(e) => toggleCaught(name, e)}
+              >
+                <div className="card-header">
+                  <span className="dex-num">#{String(originalIndex + 1).padStart(3, '0')}</span>
+                </div>
+                <img 
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${nationalDexNum}.png`} 
+                  alt={name}
+                  className="pokemon-sprite"
+                  loading="lazy"
+                />
+                <div className="card-name">{name}</div>
+                <button 
+                  className="info-btn"
+                  onClick={(e) => { e.stopPropagation(); handleSelect(name); }}
+                >
+                  + Info
+                </button>
+              </div>
+            )
+          })}
+        </div>
+      );
+    };
 
     return (
       <div className="mobile-app-screen pokedex-app">
@@ -764,44 +817,25 @@ export default function App() {
               </div>
             </div>
             
-            <div className="list-view">
-              {currentList
-                .filter(name => name.toLowerCase().includes(searchTerm.toLowerCase()))
-                .filter(name => {
-                  if (filter === 'caught') return caughtMap[name];
-                  if (filter === 'uncaught') return !caughtMap[name];
-                  return true;
-                })
-                .map((name) => {
-                  const originalIndex = currentList.indexOf(name);
-                  const nationalDexNum = NATIONAL_DEX.indexOf(name) + 1;
-                  const isCaught = caughtMap[name];
-                  
-                  return (
-                    <div 
-                      key={name} 
-                      className={`pokemon-grid-card ${isCaught ? 'caught' : 'uncaught'}`}
-                      onClick={(e) => toggleCaught(name, e)}
-                    >
-                      <div className="card-header">
-                        <span className="dex-num">#{String(originalIndex + 1).padStart(3, '0')}</span>
-                      </div>
-                      <img 
-                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${nationalDexNum}.png`} 
-                        alt={name}
-                        className="pokemon-sprite"
-                        loading="lazy"
-                      />
-                      <div className="card-name">{name}</div>
-                      <button 
-                        className="info-btn"
-                        onClick={(e) => { e.stopPropagation(); handleSelect(name); }}
-                      >
-                        + Info
-                      </button>
-                    </div>
-                  )
-                })}
+            <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+              {renderGrid(mainList)}
+              {hansaList.length > 0 && (
+                <>
+                  <h3 style={{
+                    textAlign: 'center', 
+                    padding: '10px', 
+                    background: 'rgba(0,0,0,0.5)', 
+                    borderTop: '2px solid #555',
+                    borderBottom: '2px solid #555',
+                    margin: '10px 0',
+                    fontFamily: 'Courier New',
+                    color: '#f8fafc'
+                  }}>
+                    Parque Hansa
+                  </h3>
+                  {renderGrid(hansaList)}
+                </>
+              )}
             </div>
             
             <div className="bottom-status-bar">
@@ -814,10 +848,7 @@ export default function App() {
   };
 
   const getGlobalProgress = () => {
-    let list = NATIONAL_DEX;
-    if (currentScreen === 'pokedex-regional') {
-      list = [...BASE_DEX, ...POSTGAME_COMMON, ...(version === 'diamond' ? POSTGAME_DIAMOND : POSTGAME_PEARL)];
-    }
+    let list = currentScreen === 'pokedex-national' ? NATIONAL_DEX : BASE_DEX;
     const total = list.length;
     const caught = list.filter(name => caughtMap[name]).length;
     return `${String(caught).padStart(3, '0')} / ${String(total).padStart(3, '0')}`;
