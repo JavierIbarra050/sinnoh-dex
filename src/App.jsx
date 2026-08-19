@@ -97,6 +97,19 @@ export default function App() {
     return saved ? JSON.parse(saved) : {};
   });
 
+  const [spiritombVisited, setSpiritombVisited] = useState(() => {
+    const saved = localStorage.getItem('sinnoh-dex-spiritomb');
+    return saved ? JSON.parse(saved) : {};
+  });
+
+  const toggleSpiritombNPC = (id) => {
+    setSpiritombVisited(prev => {
+      const next = { ...prev, [id] : !prev[id] };
+      localStorage.setItem('sinnoh-dex-spiritomb', JSON.stringify(next));
+      return next;
+    });
+  };
+
   const toggleCaught = (name, e) => {
     if (e) e.stopPropagation();
     const newCaught = { ...caughtMap, [name]: !caughtMap[name] };
@@ -246,6 +259,78 @@ export default function App() {
     }
   };
 
+  const renderSpiritomb = () => {
+    const SPIRITOMB_NPCS = [
+      { id: 1, name: "Greca" }, { id: 2, name: "Gina" }, { id: 3, name: "Hideki" },
+      { id: 4, name: "Pablito" }, { id: 5, name: "Wilfredo" }, { id: 6, name: "Jeremías" },
+      { id: 7, name: "Espe" }, { id: 8, name: "Nadir" }, { id: 9, name: "Pina" },
+      { id: 10, name: "Kenji" }, { id: 11, name: "Luci" }, { id: 12, name: "Esau" },
+      { id: 13, name: "Jofre" }, { id: 14, name: "Fernanda" }, { id: 15, name: "Luana" },
+      { id: 16, name: "Favia" }, { id: 17, name: "Anna" }, { id: 18, name: "Tico" },
+      { id: 19, name: "Landria" }, { id: 20, name: "Saray" }, { id: 21, name: "Ceci" },
+      { id: 22, name: "Micaela" }, { id: 23, name: "Clodovea" }, { id: 24, name: "Eloísa" },
+      { id: 25, name: "Florentín" }, { id: 26, name: "Venancio" }, { id: 27, name: "Mariluz" },
+      { id: 28, name: "Marcela" }, { id: 29, name: "Aimar" }, { id: 30, name: "Onofre" },
+      { id: 31, name: "Rober" }, { id: 32, name: "Feliciano" }, { id: 33, name: "Fede" },
+      { id: 34, name: "Eider" }, { id: 35, name: "Chano" }
+    ];
+
+    const visitedCount = SPIRITOMB_NPCS.filter(npc => spiritombVisited[npc.id]).length;
+
+    return (
+      <div className="mobile-app-screen pokedex-app spiritomb-screen">
+        <div className="nav-bar">
+          <button className="back-btn" onClick={() => setCurrentScreen('lobby')}>← Atrás</button>
+          <h2>Grutas Spiritomb</h2>
+        </div>
+        <div className="content-area" style={{ padding: '15px 15px 80px 15px' }}>
+          <p style={{fontFamily: 'Courier New, monospace', fontSize: '14px', marginBottom: '15px', color: '#e9d5ff'}}>
+            Habla con estas personas en el Subsuelo para conseguir a Spiritomb.
+          </p>
+          
+          <div style={{ marginBottom: '15px', fontWeight: 'bold', fontFamily: 'Courier New', color: '#4ade80', textAlign: 'center', textShadow: '0 0 5px rgba(74, 222, 128, 0.5)' }}>
+            Progreso: {visitedCount} / {SPIRITOMB_NPCS.length}
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+            {SPIRITOMB_NPCS.map(npc => {
+              const isVisited = spiritombVisited[npc.id];
+              return (
+                <div 
+                  key={npc.id}
+                  onClick={() => toggleSpiritombNPC(npc.id)}
+                  style={{
+                    padding: '10px',
+                    border: '2px solid',
+                    borderColor: isVisited ? '#4ade80' : 'rgba(168, 85, 247, 0.4)',
+                    borderRadius: '8px',
+                    background: isVisited ? 'rgba(74, 222, 128, 0.15)' : 'rgba(88, 28, 135, 0.4)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    boxShadow: isVisited ? '0 0 8px rgba(74, 222, 128, 0.4)' : 'none',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  <input 
+                    type="checkbox" 
+                    checked={!!isVisited} 
+                    readOnly 
+                    style={{ marginRight: '12px', pointerEvents: 'none', accentColor: '#4ade80', width: '24px', height: '24px' }}
+                  />
+                  <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <span style={{ fontSize: '12px', color: isVisited ? '#86efac' : '#c084fc', lineHeight: '1', marginBottom: '2px' }}>NPC #{npc.id}</span>
+                    <span style={{ fontWeight: 'bold', color: isVisited ? '#4ade80' : '#f3e8ff', fontSize: '22px', lineHeight: '1' }}>{npc.name}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const renderLobby = () => {
     const regionalList = [...BASE_DEX, ...POSTGAME_COMMON, ...(version === 'diamond' ? POSTGAME_DIAMOND : POSTGAME_PEARL)];
     const regionalTotal = regionalList.length;
@@ -283,6 +368,10 @@ export default function App() {
           <div className="tcg-card shiny-lobby-card" onClick={() => setCurrentScreen('shiny')}>
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-charm.png" alt="Shiny" />
             <span>Shiny Hunt</span>
+          </div>
+          <div className="tcg-card spiritomb-card" onClick={() => setCurrentScreen('spiritomb')}>
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/odd-keystone.png" alt="Spiritomb" />
+            <span>Spiritomb</span>
           </div>
         </div>
       </div>
@@ -788,6 +877,7 @@ export default function App() {
         {currentScreen === 'lobby' && renderLobby()}
         {currentScreen === 'types' && renderTypes()}
         {currentScreen === 'shiny' && renderShiny()}
+        {currentScreen === 'spiritomb' && renderSpiritomb()}
       </div>
     </div>
   );
